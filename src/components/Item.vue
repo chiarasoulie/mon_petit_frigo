@@ -11,11 +11,29 @@ defineProps(["aliment","deletea", "moins","plus"]);
          on emet un événement dont on choisit le nom (ici deleteC)
          la fonction qui gèrera cet event aura en paramètre la valeur de index
     -->
-    <button @click="()=>deletea(chose.id)">supprimer</button>
-    <button @click="()=>plus(chose.id)">augmenter la quantité</button>
-    <button @click="()=>moins(chose.id)">baisser la quantité</button>
+    <p id="space">
+      <button @click="()=>deletea(chose.id)" id="bouton">supprimer</button>
+    </p>
+    <p id="space">  
+     <button @click="()=>plus(chose.id)" id="bouton">augmenter la quantité</button>
+    </p>
+    <p id="space">
+      <button @click="()=>moins(chose.id)" id="bouton">baisser la quantité</button>
+    </p>
   </li>
 </template>
 
 <style>
+
+#bouton {
+  background-color: rgba(0, 0, 0, 0);
+  border-style: none;
+  border-left-style: none;
+  cursor: pointer;
+}
+
+ul {
+  /* afin de retirer les puces de la liste */
+  list-style-type: none;
+}
 </style>

@@ -31,7 +31,7 @@ onMounted(() => {
         listerAliments();
     });
 
-    function handlerAdd(nom,qte) {
+    function handlerAdd(nom,qte,photo) {
   // -- il faut créer une nouvelle "chsoe" instance de la classe
         console.log(nom, qte);
     let myHeaders = new Headers();
@@ -133,19 +133,28 @@ function handler1Delete(aliment) {
 </script>
 
 <template>
-    <Form @adda="handlerAdd"></Form><br>
- 
+  <body>
+    <h2>
+      Liste d'aliments dans le frigo
+    </h2><br>
     <Item v-for=" aliment of listeAliments"
       :key="aliment.id"
       :aliment="aliment"
       @deletea="handlerDelete"
       @moins="handler1Delete"
       @plus="handler1Add"
-      />
-
-
+      /><br>
+    <h2>
+      Ajouter un aliment
+      <p id="space"></p>
+    </h2><br>
+    <Form @adda="handlerAdd"></Form>
+    <p id="space2"></p>
+  </body>
+  
 </template>
 
 <style scoped>
+
 
 </style>

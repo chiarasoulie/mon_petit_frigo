@@ -1,6 +1,9 @@
 <script setup>
+
+
 // -- il faut déclarer les 2 params (props) du composant
-defineProps(["aliment","deletea", "moins","plus"]);
+defineProps(["aliment"]);
+defineEmits(["deletea", "moins","plus"])
 // -- les 2 events émis par ce composant
 </script>
 
@@ -12,13 +15,13 @@ defineProps(["aliment","deletea", "moins","plus"]);
          la fonction qui gèrera cet event aura en paramètre la valeur de index
     -->
     <p id="space">
-      <button @click="()=>deletea(chose.id)" id="bouton">supprimer</button>
+      <button @click="$emit('deletea', aliment.id)" id="bouton">supprimer</button>
     </p>
     <p id="space">  
-     <button @click="()=>plus(chose.id)" id="bouton">augmenter la quantité</button>
+      <button @click="$emit('plus', aliment)" id="bouton">augmenter la quantité</button>
     </p>
     <p id="space">
-      <button @click="()=>moins(chose.id)" id="bouton">baisser la quantité</button>
+      <button @click="$emit('moins', aliment)" id="bouton">baisser la quantité</button>
     </p>
   </li>
 </template>

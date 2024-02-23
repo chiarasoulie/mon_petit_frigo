@@ -3,10 +3,15 @@ import {onMounted,reactive} from "vue";
 import Aliment from '../js/Aliment.js'
 import Item from "./Item.vue";
 import Form from "./Form.vue";
+import Recherche from "./Recherche.vue";
 
 
 const listeAliments = reactive([])
 const url = "https://webmmi.iut-tlse3.fr/~pecatte/frigo/public/25/produits"
+let nom = ""
+let photo= ""
+let qte=1
+let id = ""
 
 function listerAliments() {
     let fetchOptions = {
@@ -31,7 +36,7 @@ onMounted(() => {
         listerAliments();
     });
 
-    function handlerAdd(nom,qte,photo) {
+    function handlerAdd(nom,qte) {
   // -- il faut créer une nouvelle "chsoe" instance de la classe
         console.log(nom, qte);
     let myHeaders = new Headers();
@@ -72,64 +77,87 @@ function handlerDelete(id) {
 }
 
 function handler1Add(aliment) {
-  console.log(aliment);
-  // -- ajouter 1 en quantité en stock
-  aliment.add1l();
-  // -- entête http pour la req AJAX
-  let myHeaders = new Headers();
-  myHeaders.append("Content-Type", "application/json");
-  // -- la chose modifiée est envoyé au serveur
-  //  via le body de la req AJAX
+  console.log(aliment); 
+  let id = aliment.id;
+  let nom = aliment.nom;
+  let qte = aliment.qte+1;
+  let photo = aliment.photo; 
+
+  let myHeaders = new Headers(); 
+  myHeaders.append("Content-Type", "application/json"); 
   const fetchOptions = {
     method: "PUT",
-    headers: myHeaders,
-    body: JSON.stringify(aliment),
+    headers : myHeaders,
+    body: JSON.stringify({id: id, nom: nom, qte: qte, photo:  photo}),
   };
-  // -- la req AJAX
-  fetch(url, fetchOptions)
+
+  fetch(url , fetchOptions)
+    .then((response) => {
+      return response.json();
+    })
+    .then((dataJSON) => {
+     listerAliments(); 
+  })
+    .catch((error) => console.log(error));
+}
+
+function handler1Delete(aliment) {
+  console.log(aliment); 
+  let id = aliment.id;
+  let nom = aliment.nom;
+  let qte = aliment.qte-1;
+  let photo = aliment.photo; 
+
+  if(qte >0){
+    let myHeaders = new Headers(); 
+  myHeaders.append("Content-Type", "application/json"); 
+  const fetchOptions = {
+    method: "PUT",
+    headers : myHeaders,
+    body: JSON.stringify({id: id, nom: nom, qte: qte, photo:  photo}),
+  };
+
+  fetch(url , fetchOptions)
+    .then((response) => {
+      return response.json();
+    })
+    .then((dataJSON) => {
+     listerAliments(); 
+  })
+    .catch((error) => console.log(error));
+
+  }else{
+    handlerDelete(id);
+  }
+}
+
+function handlerSearch(motcle) {
+  /* on récupère le mot clé nécessaire à la recherche */
+  const fetchOptions = { method: "GET" };
+
+  fetch(url + "?search=" + motcle, fetchOptions)
     .then((response) => {
       return response.json();
     })
     .then((dataJSON) => {
       console.log(dataJSON);
-      // actualiser la liste des livres
-      listerAliments();
+      let alimentsTrouves = dataJSON;
+      document.getElementById("recherche").innerHTML += "<ul>";
+      /* on insère de l'html pour créer une liste de livre correspondant au critère*/
+      for (let a of alimentsTrouves) {
+        /* pour chaque livres, on récupère ses attributs et on l'incère dans l'html */
+        document.getElementById("recherche").innerHTML +=
+          "<li>" +
+          a.nom +
+          " quantité : " +
+          a.qte +
+          "</li>";
+      }
+      /* on oublie pas de fermer la liste */
+      document.getElementById("recherche").innerHTML += "</ul>";
     })
     .catch((error) => console.log(error));
 }
-
-function handler1Delete(aliment) {
-  console.log(aliment);
-  if (aliment.qte > 1) {
-    // -- soustraire 1 de la quantité en stock
-    aliment.delete1();
-    // -- entête http pour la req AJAX
-    let myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-    // -- la chose modifiée est envoyé au serveur
-    //  via le body de la req AJAX
-    const fetchOptions = {
-      method: "PUT",
-      headers: myHeaders,
-      body: JSON.stringify(aliment),
-    };
-    // -- la req AJAX
-    fetch(url, fetchOptions)
-      .then((response) => {
-        return response.json();
-      })
-      .then((dataJSON) => {
-        console.log(dataJSON);
-        // actualiser la liste des livres
-        listerAliments();
-      })
-      .catch((error) => console.log(error));
-  } else {
-    handlerDelete(aliment.id);
-    listerAliments();
-  }
-}
-
 </script>
 
 <template>
@@ -144,6 +172,8 @@ function handler1Delete(aliment) {
       @moins="handler1Delete"
       @plus="handler1Add"
       /><br>
+      <h2>Rechercher un aliment</h2><br>
+      <Recherche @searchl="handlerSearch"></Recherche>
     <h2>
       Ajouter un aliment
       <p id="space"></p>

@@ -14,6 +14,9 @@ export default class Aliment {
     get qte() {
       return this._qte;
     }
+    get photo() {
+      return this._photo;
+    }
   
   
     get pourAfficher() {

@@ -1,8 +1,5 @@
 <script setup>
 
-   
-
-
 </script>
 
 <template>
@@ -14,8 +11,16 @@
       <div class="divider"></div> 
     </div>
     <div class="meubles">
-      <div class="meubled"></div>
-      <div class="meubleg"></div>
+      <div class="meubled">
+        <div class="png1"></div>
+        <div class="png2"></div>
+        <div class="milieu"></div>
+      </div>
+      <div class="meubleg">
+        <div class="png1"></div>
+        <div class="png2"></div>
+        <div class="milieu"></div>
+      </div>
       <div class="hotte"></div>
       <div class="hotte2"></div>
     </div>
@@ -106,6 +111,38 @@
   top: 32%; /* Position verticale au centre */
   left: 72%; /* Positionnement à droite du frigo */
   border-radius: 10px; /* Pour arrondir les coins */
+}
+
+.milieu{
+  width: 2px; /* Épaisseur du trait de séparation */
+  height: 100%;
+  background-color: #fff;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%; /* Pour diviser le frigo en deux parties */
+  transform: translateX(-50%);
+
+}
+
+.png1{
+  width: 10px;
+  height: 90px;
+  right: 80px;
+  background-color: black;
+  position: absolute;
+  top: 40%;
+  right: 45%;
+}
+
+.png2{
+  width: 10px;
+  height: 90px;
+  right: 80px;
+  background-color: black;
+  position: absolute;
+  top: 40%;
+  left: 45%;
 }
 
 </style>

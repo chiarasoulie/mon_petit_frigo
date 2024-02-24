@@ -1,6 +1,9 @@
 <template>
-    <p>Liste</p>
-    <Liste></Liste>
+    <div class="frigoO">
+        <p>Liste</p>
+        <Liste></Liste>
+    </div>
+    
 
 </template>
 

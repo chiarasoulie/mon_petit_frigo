@@ -15,28 +15,27 @@ defineEmits(["deletea", "moins","plus"])
          la fonction qui gèrera cet event aura en paramètre la valeur de index
     -->
     <p id="space">
-      <button @click="$emit('deletea', aliment.id)" id="bouton">supprimer</button>
+      <v-btn variant="tonal" @click="$emit('deletea', aliment.id)" class="bouton">supprimer</v-btn>
     </p>
     <p id="space">  
-      <button @click="$emit('plus', aliment)" id="bouton">augmenter la quantité</button>
+      <v-btn variant="tonal" @click="$emit('plus', aliment)" class="bouton">augmenter la quantité</v-btn>
     </p>
     <p id="space">
-      <button @click="$emit('moins', aliment)" id="bouton">baisser la quantité</button>
+      <v-btn variant="tonal" @click="$emit('moins', aliment)" class="bouton">baisser la quantité</v-btn>
     </p>
   </li>
 </template>
 
-<style>
+<style scoped>
 
-#bouton {
+.bouton {
   background-color: rgba(0, 0, 0, 0);
   border-style: none;
   border-left-style: none;
   cursor: pointer;
+  flex-grow: 1;
+  width: 200px;
+  margin: 10px;
 }
 
-ul {
-  /* afin de retirer les puces de la liste */
-  list-style-type: none;
-}
 </style>

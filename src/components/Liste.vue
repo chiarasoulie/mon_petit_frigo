@@ -37,8 +37,17 @@ onMounted(() => {
     });
 
     function handlerAdd(nom,qte) {
-  // -- il faut créer une nouvelle "chsoe" instance de la classe
-        console.log(nom, qte);
+  // -- il faut créer une nouvelle  instance de la classe
+       // console.log(nom, qte);
+       if (qte < 1) {
+        alert("Veuillez saisir une quantité valide");
+    }
+    else if (nom.length == 0) {
+        alert("Veuillez saisir le type d'aliment");
+    }
+    else if (qte.length == 0) {
+        alert("Veuillez saisir une quantité");
+    } else {
     let myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     const fetchOptions = {
@@ -58,6 +67,7 @@ onMounted(() => {
     .catch((error) => {
         console.log(error);
     })
+  } 
 }
 function handlerDelete(id) {
     let myHeaders = new Headers();

@@ -8,22 +8,24 @@ defineEmits(["deletea", "moins","plus"])
 </script>
 
 <template>
-  <li>
-    {{ aliment.pourAfficher }}
+  <ul>
+    <li>
+      {{ aliment.pourAfficher }}
     <!-- au click sur le bouton, 
          on emet un événement dont on choisit le nom (ici deleteC)
          la fonction qui gèrera cet event aura en paramètre la valeur de index
     -->
-    <p id="space">
-      <v-btn variant="tonal" @click="$emit('deletea', aliment.id)" class="bouton">supprimer</v-btn>
-    </p>
-    <p id="space">  
-      <v-btn variant="tonal" @click="$emit('plus', aliment)" class="bouton">augmenter la quantité</v-btn>
-    </p>
-    <p id="space">
-      <v-btn variant="tonal" @click="$emit('moins', aliment)" class="bouton">baisser la quantité</v-btn>
-    </p>
-  </li>
+        <p id="space">
+          <v-btn variant="tonal" @click="$emit('deletea', aliment.id)" class="bouton">supprimer</v-btn>
+       </p>
+        <p id="space">  
+          <v-btn variant="tonal" @click="$emit('plus', aliment)" class="bouton">augmenter la quantité</v-btn>
+        </p>
+        <p id="space">
+          <v-btn variant="tonal" @click="$emit('moins', aliment)" class="bouton">baisser la quantité</v-btn>
+         </p>
+      </li>
+  </ul>
 </template>
 
 <style scoped>
@@ -35,7 +37,12 @@ defineEmits(["deletea", "moins","plus"])
   cursor: pointer;
   flex-grow: 1;
   width: 200px;
-  margin: 10px;
+  margin: 5px;
+}
+
+ul {
+  /* afin de retirer les puces de la liste */
+  list-style-type: none;
 }
 
 </style>

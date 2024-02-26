@@ -172,14 +172,10 @@ function handlerSearch(motcle) {
       @moins="handler1Delete"
       @plus="handler1Add"
       /><br>
-      <h2>Rechercher un aliment</h2><br>
-      <Recherche @searchl="handlerSearch"></Recherche>
-    <h2>
-      Ajouter un aliment
-      <p id="space"></p>
-    </h2><br>
+    <h2>Rechercher un aliment</h2><br>
+    <Recherche @searchl="handlerSearch"></Recherche><br>
+    <h2>Ajouter un aliment</h2><br>
     <Form @adda="handlerAdd"></Form>
-    <p id="space2"></p>
   </body>
   
 </template>

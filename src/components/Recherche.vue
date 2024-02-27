@@ -8,11 +8,6 @@ const emit = defineEmits(["searchl"]);
 </script>
 
 <template>
-  <!-- quand le formulaire est validé,
-    on doit emmetre un event vers le composant parent 
-    pour faire ressortir du composant 
-    les valeurs des variables "titre", "quantité" et "prix";
-  -->
 
   <form @submit.prevent="$emit('searchl', motcle)" id="recherche">
     <div class="container">

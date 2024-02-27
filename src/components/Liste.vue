@@ -153,9 +153,9 @@ function handlerSearch(motcle) {
       console.log(dataJSON);
       let alimentsTrouves = dataJSON;
       document.getElementById("recherche").innerHTML += "<ul>";
-      /* on insère de l'html pour créer une liste de livre correspondant au critère*/
+      /* on insère de l'html pour créer une liste d'aliments  correspondant au critère*/
       for (let a of alimentsTrouves) {
-        /* pour chaque livres, on récupère ses attributs et on l'incère dans l'html */
+        /* pour chaque aliment, on récupère ses attributs et on l'incère dans l'html */
         document.getElementById("recherche").innerHTML +=
           "<li>" +
           a.nom +

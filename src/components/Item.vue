@@ -12,7 +12,7 @@ defineEmits(["deletea", "moins","plus"])
     <li>
       {{ aliment.pourAfficher }}
     <!-- au click sur le bouton, 
-         on emet un événement dont on choisit le nom (ici deleteC)
+         on emet un événement dont on choisit le nom (ici deletea)
          la fonction qui gèrera cet event aura en paramètre la valeur de index
     -->
         <p id="space">

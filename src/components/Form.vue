@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue";
-// -- donnée réactive pour la saisie du libellé
+
 const nom = ref("");
 const qte= ref("");
 // -- les events émis par le composant
@@ -12,7 +12,6 @@ const emit = defineEmits(["adda"]);
   <!-- quand le formulaire est validé,
     on doit emmetre un event vers le composant parent 
     pour faire ressortir du composant 
-    la valeur de la variable "libelle";
   -->
 
   <form @submit.prevent="$emit('adda', nom, qte)" id = "ajouter">

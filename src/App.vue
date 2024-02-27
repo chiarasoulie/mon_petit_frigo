@@ -11,8 +11,7 @@
   <v-btn to="/PageAccueil">Home</v-btn>
 
   <!-- mettre l'icone dans le 'slot append' de 'v-app-bar' soit au fond à droite -->
-  <template v-slot:append>
-  </template>
+ 
   </v-app-bar>
   <!-- la zone où sera affichée les différentes "pages"-->
   <v-main>

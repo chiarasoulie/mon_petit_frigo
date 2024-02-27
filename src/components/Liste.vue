@@ -155,7 +155,7 @@ function handlerSearch(motcle) {
       document.getElementById("recherche").innerHTML += "<ul>";
       /* on insère de l'html pour créer une liste d'aliments  correspondant au critère*/
       for (let a of alimentsTrouves) {
-        /* pour chaque livres, on récupère ses attributs et on l'incère dans l'html */
+        /* pour chaque aliment, on récupère ses attributs et on l'incère dans l'html */
         document.getElementById("recherche").innerHTML +=
           "<li>" +
           a.nom +
